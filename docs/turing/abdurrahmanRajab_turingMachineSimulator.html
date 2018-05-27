@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+
+
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
@@ -84,12 +86,110 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   justify-content: center;
   flex-wrap: wrap;
 }
+/* Warning Box and its colour */
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+}
 
 
+.alert.warning {background-color: #f44336;}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+/*Model Desgin*/
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: rgb(0, 0, 0);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
 
 </style>
-<body>
+<body >
 
+
+  
 <!-- Navbar -->
 <div class="w3-top">
   <div class="w3-bar w3-blue w3-card w3-left-align w3-large">
@@ -105,7 +205,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 
 
   </div>
-
+<!-- Warning Box - Google Tag -->
+<div class="alert warning">
+  <span class="closebtn">&times;</span>  
+  <strong>Warning!</strong> This Site is using <a href="https://www.google.com/analytics/">google analytics</a> for research use.
+</div>
   <!-- Navbar on small screens -->
   <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large  w3-large">
         <a href="#history" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()" >Brief history</a>
@@ -229,8 +333,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                             <input id="init-value-input" type="text" onkeyup="tm.loadInput()" />
                           </div>
                     <select onchange="tm.examplesBox()" id="ExamlpesDropDown" class="w3-third">
-                            <option >accepted example</option>
-                            <option >rejected example</option>
+                            <option > {0 <sup>n</sup> 1 <sup>n</sup> | n &ge; 1} example - accepted </option>
+                            <option > {0 <sup>n</sup> 1 <sup>n</sup> | n &ge; 1} example - rejected</option>
+                            <!-- <option >Minus example - Works </option>
+                            <option >Minus example - Error </option> -->
                            
                         </select><br />
                 </div>
@@ -302,6 +408,58 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                                 <td></td>
                             </tr>
                         </tbody></table>
+                        <br>
+                        <table id="table_example2" class="w3-table-all w3-card-4" style="font-size: 2vw" >
+                          <tbody><tr class="w3-blue">
+                              <td><b>State</b></td>
+                              <td><b>0</b></td>
+                              <td><b>1</b></td>
+                              <td><b>B</b></td>
+                      
+                          </tr>
+                          <tr>
+                              <td>0</td>
+                              <td>(q1 , B, R)</td>
+                              <td>(q5 , B, R)</td>
+                              <td></td>
+                          </tr>
+                          <tr>
+                              <td>1</td>
+                              <td>(q1 , 0, R)</td>
+                              <td>(q2 , 1, R)</td>
+                              <td></td>
+                          </tr>
+                          <tr>
+                              <td>2</td>
+                              <td>(q3 , 1, L)</td>
+                              <td>(q2 , 1, R)</td>
+                              <td>(q4 , B, L)</td>
+                          </tr>
+                          <tr>
+                              <td>3</td>
+                              <td>(q3 , 0, L)</td>
+                              <td>(q3 , 1, L)</td>
+                              <td>(q0 , B, R)</td>
+                          </tr>
+                          <tr>
+                              <td>4</td>
+                              <td>(q4 , 0, L)</td>
+                              <td>(q4 , B, L)</td>
+                              <td>(q6 , 0, R)</td>
+                          </tr>
+                          <tr>
+                              <td>5</td>
+                              <td>(q5 , B, R)</td>
+                              <td>(q5 , B, R)</td>
+                              <td>(q6 , B, R)</td>
+                          </tr>
+                          <tr>
+                              <td>6</td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                          </tr>
+                      </tbody></table>
                         <div class="w3-container">
                       </div>
                     </div>
@@ -351,7 +509,26 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
  </div>
  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
 </footer>
+<!-- Build message model -->
+<!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal2 -->
+<!-- The Modal -->
+<div id="myModal" class="modal">
 
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div id ="header" class="modal-header">
+      <span class="close">&times;</span>
+      <h2> </h2>
+    </div>
+    <div class="modal-body">
+      <p id="userMessage"></p>
+    </div>
+    <div id ="footer" class="modal-footer">
+      <h3> </h3>
+    </div>
+  </div>
+
+</div>
 
 
 <script>
@@ -376,6 +553,8 @@ class TuringMachine {
     this.currentState = 1;
     this.Coloumn=1;
     this.row=1;
+    this.acceptedMessage="Accepted";
+    this.rejectedMessage="Rejected";
 
     // you can hide it by using this .. .
     //.style.display = 'none';
@@ -396,8 +575,11 @@ this.FirstExample();
   FirstExample(value){
     this.alphabet = '01xy';
    // this.initValue = value;
+    this.hideTable2();
     this.speed = 1000;
     this.countOfStates = 5;
+    this.rejectedMessage="Rejected";
+    this.acceptedMessage="Accepted";
     this.states = [
       ['x>2','','','y>4',''   ],
       ['0>2','y<3','','y>2',''   ],
@@ -426,6 +608,8 @@ this.FirstExample();
        // this.initValue = value;
         this.speed = 1000;
         this.countOfStates = 7;
+        this.rejectedMessage="could not evaluate";
+        this.acceptedMessage="Evaluated";
         this.states = [
           ['_>2','_>6',''    ],
           ['0>2','1>3',''    ],
@@ -439,7 +623,20 @@ this.FirstExample();
          document.getElementById('time-input').value = this.speed;
          this.createTape();
       }
-  
+      hideTable1(){
+    document.getElementById('table_example1').style.display ='none'; 
+    this.showTable2();
+  }
+  hideTable2(){
+    document.getElementById('table_example2').style.display ='none'; 
+    this.showTable1();
+  }
+  showTable1(){
+    document.getElementById('table_example1').style.display ='table'; 
+  }
+  showTable2(){
+    document.getElementById('table_example2').style.display ='table'; 
+  }
   
 
   get currentValue() {
@@ -451,6 +648,22 @@ this.FirstExample();
   
   get tape() {
     return document.getElementsByClassName('cells-container')[0].childNodes;
+  }
+  displayMessage(Message , colour){
+    // Get the modal
+    var modal = document.getElementById('myModal');
+    // open the model
+    modal.style.display = "block";
+    //write the inner text message :
+    document.getElementById("userMessage").innerHTML = Message;
+    if(colour == 1 ){
+      // Chaneg model colour to red.
+    document.getElementById("header").style.backgroundColor="red";
+    document.getElementById("footer").style.backgroundColor="red";
+    }
+    
+
+
   }
   
   createTape () {
@@ -628,8 +841,8 @@ this.FirstExample();
       const state = currentStatement.slice(2);
       if (state === '0') {
         this.finish();
-
-        alert("Accepted.");
+        tm.displayMessage(this.acceptedMessage);
+        // alert("Accepted.");
         this.clearLast();
       } else {
         this.currentState = state;
@@ -644,7 +857,8 @@ this.FirstExample();
  
   } catch (error) {
     console.log(error);
-    alert('Rejected..Try an other value');
+    tm.displayMessage( this.rejectedMessage, 1);
+    // alert('Rejected..Try an other value');
     this.finish();
   }
 
@@ -750,7 +964,21 @@ const initHandlers = (TuringMachine) => {
   stepBtn.onclick = ev => {
     tm.step();
   }
-  
+
+  var modal = document.getElementById('myModal');
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+}
 
 }
 
@@ -764,20 +992,44 @@ tm.load();
 
 </script>
 <script>
-    // Used to toggle the menu on small screens when clicking on the menu button
-  
-  function myFunction() {
-      var x = document.getElementById("navDemo");
-      console.log("entered");
-      if (x.className.indexOf("w3-show") == -1) {
-          x.className += " w3-show";
-      } else { 
-          x.className = x.className.replace(" w3-show", "");
+      // Used to toggle the menu on small screens when clicking on the menu button
+      // Use template : https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_start_page&stacked=h
+      function myFunction() {
+          var x = document.getElementById("navDemo");
+          console.log("entered");
+          if (x.className.indexOf("w3-show") == -1) {
+              x.className += " w3-show";
+          } else { 
+              x.className = x.className.replace(" w3-show", "");
+          }
       }
-  }
+      // Used Code for Warning message : https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_alerts
+      // https://www.w3schools.com/howto/howto_js_alert.asp
+      var close = document.getElementsByClassName("closebtn");
+      var i;
 
+      for (i = 0; i < close.length; i++) {
+          close[i].onclick = function(){
+              var div = this.parentElement;
+              div.style.opacity = "0";
+              setTimeout(function(){ div.style.display = "none"; }, 600);
+          }
+      }
 
-  </script>
+// document.getElementsByTagName("BODY")[0].style.display = "none";
+// document.getElementsByTagName("BODY")[0].st= "none";
+
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119938930-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-119938930-1');
+</script>
+
 </body>
 
 </html>
